@@ -41,25 +41,22 @@ rm(i)
 rm(next.path)
 
 # Parse the list, extract number of likes and the corresponding text (status)
-parse.master <- function(x, f) sapply(x$data, f)
 
 # Get the text of the message
-parse.messages <- function(x) if(!is.null(x$message)) x$message else NA
-individual.posts.messages <- unlist(sapply(individual.posts, parse.master, f=parse.messages))
+individual.posts.messages <- unlist(sapply(individual.posts, ParsePosts, f=ParsePostMessages))
 
 # Get the count of the likes
-parse.likes <- function(x) if(!is.null(x$likes$count)) x$likes$count else 0
-individual.posts.likes <- unlist(sapply(individual.posts, parse.master, f=parse.likes))
+individual.posts.likes <- unlist(sapply(individual.posts, ParsePosts, f=ParsePostLikes))
 
 # Get a count of the comments
-parse.comments <- function(x) if(!is.null(x$comments$count)) x$comments$count else 0
-individual.posts.comments <- unlist(sapply(individual.posts, parse.master, f=parse.comments))
+individual.posts.comments <- unlist(sapply(individual.posts, ParsePosts, f=ParsePostComments))
 
-parse.links <- function(x) if (x$type=="link" & x$from$id==individual.id) x$link else NA
-individual.links <- unlist(sapply(individual.posts, parse.master, f=parse.links))
+# Get the individuals posted links
+individual.links <- unlist(sapply(individual.posts, ParsePosts, f=ParsePostLinks))
 
-parse.links.likes <- function(x) if (x$type=="link" & x$from$id==individual.id) x$likes$count else NA
-individual.links.likes <- unlist(sapply(individual.posts, parse.master, f=parse.links.likes))
+# Get the number of likes for any given link
+individual.links.likes <- unlist(sapply(individual.posts, ParsePosts, f=ParsePostLinkLikes))
 
-# see three most popular talks
+# Display the three most popular links
+cat("Displaying the three most popular links by this individual:\n")
 individual.links[order(individual.links.likes,decreasing=TRUE)][1:3]

@@ -30,5 +30,6 @@ for (i in 1:length(package.list)) {
   require(pkg, character.only = TRUE)
 }
 
+rm(i)
 rm(package.list)
 rm(pkg)
