@@ -24,5 +24,3 @@ system('for i in `ls photos/*/*.jpg`; do j=${i%.*}; convert $j.jpg $j.jpg; done'
 
 # Cleanup temporary variables
 rm(i)
-
-

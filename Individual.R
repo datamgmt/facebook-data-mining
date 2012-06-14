@@ -37,9 +37,6 @@ while(length(next.path)!=0) {
 
 individual.posts[[i]] <- NULL
 
-rm(i)
-rm(next.path)
-
 # Parse the list, extract number of likes and the corresponding text (status)
 
 # Get the text of the message
@@ -59,4 +56,7 @@ individual.links.likes <- unlist(sapply(individual.posts, ParsePosts, f=ParsePos
 
 # Display the three most popular links
 cat("Displaying the three most popular links by this individual:\n")
-individual.links[order(individual.links.likes,decreasing=TRUE)][1:3]
+cat(individual.links[order(individual.links.likes,decreasing=TRUE)][1:3])
+
+rm(i)
+rm(next.path)

@@ -2,6 +2,10 @@
 
 # Get the list of friends
 friends <- FacebookFetch(access.path=paste(individual.id,"friends", sep="/"), access.token=access.token)
+# Pre-1986 Group
+friends <- FacebookFetch(access.path=paste("10150846364521714","members", sep="/"), access.token=access.token)
+# Sequent Group
+friends <- FacebookFetch(access.path=paste("10150846271306714","members", sep="/"), access.token=access.token)
 
 # Extract the friends Facebook IDs
 friends.id <- sapply(friends$data, function(x) x$id)

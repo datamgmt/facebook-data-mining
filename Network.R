@@ -7,18 +7,20 @@ friends.network <- as.network(friends.matrix)
 plot(friends.network, label=friends.initial, arrowhead.cex=0)
 
 # And writing to a PDF
-pdf(file="output/Network1_Initials.pdf", width=25, height=25)
+pdf(file=paste("output/Network_Initials_",file.seqno,".pdf", sep=""), width=25, height=25)
 plot(friends.network, label=friends.initial, arrowhead.cex=0)
 dev.off()
+file.seqno <- file.seqno + 1
 
 # Friends (using their full names)
 friends.network <- as.network(friends.matrix)
 plot(friends.network, label=friends.name, arrowhead.cex=0)
 
 # And writing to a PDF
-pdf(file="output/Network1_Names.pdf", width=25, height=25)
+pdf(file=paste("output/Network_Names_",file.seqno,".pdf", sep=""), width=25, height=25)
 plot(friends.network, label=friends.name, arrowhead.cex=0)
 dev.off()
+file.seqno <- file.seqno + 1
 
 # Type 2: Using the 'Rgraphviz' library
 
@@ -38,18 +40,20 @@ V(friends.graph)$label <- friends.initial
 plot(friends.graph,layout=friends.layout,vertex.size=0,vertex.frame.color="#00000000")
 
 # And writing to a PDF
-pdf(file="output/Network2_Initials.pdf", width=25, height=25)
+pdf(file=paste("output/Network_Initials_",file.seqno,".pdf", sep=""), width=25, height=25)
 plot(friends.graph,layout=friends.layout,vertex.size=0,vertex.frame.color="#00000000")
 dev.off()
+file.seqno <- file.seqno + 1
 
 # Friends (using their names)
 V(friends.graph)$label <- friends.name
 plot(friends.graph,layout=friends.layout,vertex.size=0,vertex.frame.color="#00000000")
 
 # And writing to a PDF
-pdf(file="output/Network2_Names.pdf", width=25, height=25)
+pdf(file=paste("output/Network_Names_",file.seqno,".pdf", sep=""), width=25, height=25)
 plot(friends.graph,layout=friends.layout,vertex.size=0,vertex.frame.color="#00000000")
 dev.off()
+file.seqno <- file.seqno + 1
 
 # Currently commented out until I can improve the speed and output size
 #
@@ -70,7 +74,7 @@ dev.off()
 # }
 # 
 # # And writing to a PDF
-# pdf(file="output/Network2_Photos.pdf", width=25, height=25)
+# pdf(file=paste("output/Network_Photos_",file.seqno,".pdf", sep=""), width=25, height=25)
 # plot(friends.graph,layout=friends.layout,vertex.size=0,vertex.frame.color="#00000000")
 # friends.layout.tmp<-friends.layout
 # for(i in length(friends.id):1){			  
@@ -83,5 +87,6 @@ dev.off()
 # 	}
 # }
 # dev.off()
+# file.seqno <- file.seqno + 1
 
 
